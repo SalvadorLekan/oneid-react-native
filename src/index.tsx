@@ -66,7 +66,7 @@ export const OneidProvider = ({ children, apiKey }: OneidProviderProps) => {
         onDismiss={closeModal}
         onRequestClose={closeModal}
         animationType="slide"
-        presentationStyle="fullScreen">
+        presentationStyle="pageSheet">
         <WebView
           source={{ uri: uri }}
           onNavigationStateChange={({ url }) => {
