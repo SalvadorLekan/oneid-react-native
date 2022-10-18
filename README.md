@@ -14,7 +14,8 @@
   react-native link oneid-react-native
   ```
 ## Usage:
-    ```js
+
+    ```javascript
     import { OneidProvider } from 'oneid-react-native';
 
     const App = () => {
@@ -27,9 +28,9 @@
       );
     };
     ```
-    
 
-    ```js
+
+    ```javascript
     import { useOneid } from 'oneid-react-native';
 
     const YourApp = () => {
