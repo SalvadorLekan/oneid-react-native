@@ -1,4 +1,5 @@
 /// <reference types="react" />
+import "react-native-url-polyfill/auto";
 export interface User {
     _id: string;
     username: string;

@@ -1,7 +1,7 @@
 import { createContext, useCallback, useContext, useMemo, useRef, useState } from "react";
 import { Modal } from "react-native";
 import WebView from "react-native-webview";
-
+import "react-native-url-polyfill/auto";
 const baseURL = "https://auth.oneidtech.com/auth";
 
 export interface User {
@@ -70,6 +70,10 @@ export const OneidProvider = ({ children, apiKey }: OneidProviderProps) => {
         <WebView
           source={{ uri: uri }}
           onNavigationStateChange={({ mainDocumentURL, url }) => {
+            console.log({
+              mainDocumentURL,
+              url,
+            });
             if (url.includes("https://auth.oneidtech.com/undefined")) {
               let searchParams = new URLSearchParams(url);
               if (searchParams.get("token") && searchParams.get("user")) {
