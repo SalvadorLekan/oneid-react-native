@@ -76,6 +76,8 @@ export const OneidProvider = ({ children, apiKey }: OneidProviderProps) => {
             });
             if (url.includes("https://auth.oneidtech.com/undefined")) {
               let u = new URL(url);
+              console.log(u.searchParams.get("token"));
+              console.log(u.searchParams.get("user"));
               if (u.searchParams.get("token") && u.searchParams.get("user")) {
                 let token = u.searchParams.get("token")!;
                 let userString = u.searchParams.get("user")!;
