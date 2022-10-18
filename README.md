@@ -28,6 +28,7 @@
     };
     ```
     
+
     ```js
     import { useOneid } from 'oneid-react-native';
 
