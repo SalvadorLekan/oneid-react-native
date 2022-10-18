@@ -16,10 +16,17 @@ export interface User {
     postalCode?: string;
     [key: string]: any;
 }
+declare type Resp = {
+    token: string;
+    user: User;
+};
 interface OneidProviderProps {
     children: React.ReactNode;
     apiKey: string;
 }
 export declare const OneidProvider: ({ children, apiKey }: OneidProviderProps) => JSX.Element;
+export declare const useOneid: () => {
+    login: () => Promise<Resp>;
+};
 export {};
 //# sourceMappingURL=index.d.ts.map
