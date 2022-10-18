@@ -78,7 +78,6 @@ export const OneidProvider = ({ children, apiKey }: OneidProviderProps) => {
               let u = new URL(url);
               console.log({ u });
               console.log(u.search);
-
               console.log(u.searchParams.get("token"));
               console.log(u.searchParams.get("user"));
               if (u.searchParams.get("token") && u.searchParams.get("user")) {
