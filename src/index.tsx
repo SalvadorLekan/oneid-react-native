@@ -1,4 +1,4 @@
-import { createContext, useCallback, useMemo, useRef, useState } from "react";
+import { createContext, useCallback, useContext, useMemo, useRef, useState } from "react";
 import { Modal } from "react-native";
 import WebView from "react-native-webview";
 
@@ -27,7 +27,11 @@ type Resp = {
   user: User;
 };
 
-const OneidContext = createContext(null);
+let initialContext: {
+  login: () => Promise<Resp>;
+} | null = null;
+
+const OneidContext = createContext(initialContext!);
 
 interface OneidProviderProps {
   children: React.ReactNode;
@@ -51,8 +55,11 @@ export const OneidProvider = ({ children, apiKey }: OneidProviderProps) => {
       rejectRef.current = reject;
     });
   }, []);
+
+  const value = useMemo(() => ({ login }), []);
+
   return (
-    <OneidContext.Provider value={null}>
+    <OneidContext.Provider value={value}>
       {children}
       <Modal
         visible={webviewOpen}
@@ -81,4 +88,12 @@ export const OneidProvider = ({ children, apiKey }: OneidProviderProps) => {
       </Modal>
     </OneidContext.Provider>
   );
+};
+
+export const useOneid = () => {
+  const context = useContext(OneidContext);
+  if (context === undefined) {
+    throw new Error("useOneid must be used within a OneidProvider");
+  }
+  return context;
 };
